@@ -1,0 +1,41 @@
+body {
+  text-align: center;
+  font-family: arial, helvetica, sans-serif;
+  background-color: #999967;
+  padding: 0;
+}
+
+p {
+  line-height: 21px;
+}
+
+h1 {
+  color: #999967;
+  background-color: #666666;
+  font-size: 2em;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 7px;
+  padding: 4px;
+  font-style: italic;
+  letter-spacing: 0.5em;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5em;
+  border-bottom-color: #CCCCCC;
+}
+
+#timer {
+  color: #CCCC9A;
+  font-size: 1.5em;
+}
+
+.btn {
+  background: #666666;
+  border-radius: 28px;
+  color: #999967;
+  padding: 10px 20px 10px 20px;
+}
+
+.btn:hover {
+  background: #CCCCCC;
+}
