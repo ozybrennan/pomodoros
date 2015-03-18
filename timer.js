@@ -13,6 +13,9 @@ function CreateTimer(Time) {
   TotalSeconds = Time;
   CurrentMode = Time;
   UpdateTimer();
+  if (Handle) {
+    clearInterval(Handle);
+  }
   Handle = setInterval("Tick()", 1000)
 }
 
