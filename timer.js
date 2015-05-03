@@ -13,9 +13,9 @@ function CreateTimer(Time) {
   PauseButton = document.getElementById("pause");
   PauseButton.value = "Pause";
   TotalSeconds = Time;
-  CurrentMode = Time * 100;
+  CurrentMode = Time;
   TimesLooped = 0;
-  MaxLoop = 4;
+  ChangeMax();
   UpdateTimer();
   if (Handle) {
     clearInterval(Handle);
@@ -51,10 +51,8 @@ function AlternateTimer(){
   if (CurrentMode === 300 || CurrentMode === 900) {
     TotalSeconds = 1500;
     CurrentMode = 1500;
-    alert("Your break is over.")
   } else {
     TimesLooped++
-    alert("Work is over! Break time!")
     if (MaxLoop && TimesLooped >= MaxLoop) {
       TotalSeconds = 900;
       CurrentMode = 900;
@@ -65,8 +63,15 @@ function AlternateTimer(){
     }
   }
   AlarmSound.play();
+  if (Alert) {
+    if (CurrentMODE === 1500) {
+      alert("Break's over! Get to work!")
+    } else {
+      alert("Work's over! Time to play!")
+    }
+  }
   clearInterval(Handle);
-  window.setTimeout("StartLoop()", 8)
+  window.setTimeout("StartLoop()", 800)
 }
 
 function StartLoop () {
