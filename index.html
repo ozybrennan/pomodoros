@@ -11,12 +11,14 @@
     <div id='timer'>00 : 00</div>
     <p>
     <audio src="alarm.wav" id="audio" preload="auto">Your browser doesn't support the audio. It will not work.</audio>
-    <input class="btn" id="start" type="button" value="Start" onclick="CreateTimer(1)" />
+    <input class="btn" id="start" type="button" value="Start" onclick="CreateTimer(1500)" />
     <input class="btn" id="pause" type="button" value="Pause" onclick="Pause()" />
+    <p>
+    <input class="btn" id="pause" type="button" value="Test Sound" onclick="TestSound()" />
     <div>
       <label for="selectMax">Long Break</label>
       <br>
-      <select id="selectMax" onChange = "changeMax()">
+      <select id="selectMax" onChange = "ChangeMax()">
         <option value="3">Every Third</option>
         <option value="4">Every Fourth</option>
         <option value="5">Every Fifth</option>

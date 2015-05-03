@@ -49,16 +49,18 @@ function LeadingZero(Time) {
 
 function AlternateTimer(){
   if (CurrentMode === 300 || CurrentMode === 900) {
-    TotalSeconds = 1;
+    TotalSeconds = 1500;
     CurrentMode = 1500;
+    alert("Your break is over.")
   } else {
     TimesLooped++
+    alert("Work is over! Break time!")
     if (MaxLoop && TimesLooped >= MaxLoop) {
-      TotalSeconds = 3;
+      TotalSeconds = 900;
       CurrentMode = 900;
       TimesLooped = 0;
     } else {
-      TotalSeconds = 2;
+      TotalSeconds = 300;
       CurrentMode = 300;
     }
   }
@@ -83,6 +85,10 @@ function Pause () {
   }
 }
 
-function changeMax () {
+function ChangeMax () {
   MaxLoop = parseInt(document.getElementById('selectMax').value);
+}
+
+function TestSound() {
+  AlarmSound.play();
 }
