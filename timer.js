@@ -1,6 +1,8 @@
 var Timer;
 var TotalSeconds;
 var CurrentMode;
+var TimesLooped;
+var MaxLoop;
 var AlarmSound;
 var PauseButton;
 var Handle;
@@ -11,7 +13,9 @@ function CreateTimer(Time) {
   PauseButton = document.getElementById("pause");
   PauseButton.value = "Pause";
   TotalSeconds = Time;
-  CurrentMode = Time;
+  CurrentMode = Time * 100;
+  TimesLooped = 0;
+  MaxLoop = 4;
   UpdateTimer();
   if (Handle) {
     clearInterval(Handle);
@@ -44,16 +48,23 @@ function LeadingZero(Time) {
 }
 
 function AlternateTimer(){
-  if (CurrentMode === 1500) {
-    TotalSeconds = 300;
-    CurrentMode = 300;
-  } else {
-    TotalSeconds = 1500;
+  if (CurrentMode === 300 || CurrentMode === 900) {
+    TotalSeconds = 1;
     CurrentMode = 1500;
+  } else {
+    TimesLooped++
+    if (MaxLoop && TimesLooped >= MaxLoop) {
+      TotalSeconds = 3;
+      CurrentMode = 900;
+      TimesLooped = 0;
+    } else {
+      TotalSeconds = 2;
+      CurrentMode = 300;
+    }
   }
   AlarmSound.play();
   clearInterval(Handle);
-  window.setTimeout("StartLoop()", 8000)
+  window.setTimeout("StartLoop()", 8)
 }
 
 function StartLoop () {
@@ -70,4 +81,8 @@ function Pause () {
     window.clearInterval(Handle);
     Handle = 0;
   }
+}
+
+function changeMax () {
+  MaxLoop = parseInt(document.getElementById('selectMax').value);
 }
