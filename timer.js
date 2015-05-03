@@ -6,12 +6,17 @@ var MaxLoop;
 var AlarmSound;
 var PauseButton;
 var Handle;
+var Alert;
 
-function CreateTimer(Time) {
+function CreateTimer(){
   Timer = document.getElementById("timer");
   AlarmSound = document.getElementById("audio");
   PauseButton = document.getElementById("pause");
   PauseButton.value = "Pause";
+  Alert = false;
+}
+
+function Start(Time) {
   TotalSeconds = Time;
   CurrentMode = Time;
   TimesLooped = 0;
@@ -64,7 +69,7 @@ function AlternateTimer(){
   }
   AlarmSound.play();
   if (Alert) {
-    if (CurrentMODE === 1500) {
+    if (CurrentMode === 1500) {
       alert("Break's over! Get to work!")
     } else {
       alert("Work's over! Time to play!")
@@ -96,4 +101,8 @@ function ChangeMax () {
 
 function TestSound() {
   AlarmSound.play();
+}
+
+function SwapAlert(){
+  Alert = Alert ? false : true;
 }
