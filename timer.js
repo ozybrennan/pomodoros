@@ -6,14 +6,14 @@ var maxLoop;
 var alarmSound;
 var pauseButton;
 var handle;
-var alert;
+var Alert;
 
 function createTimer(){
   timer = document.getElementById("timer");
   alarmSound = document.getElementById("audio");
   pauseButton = document.getElementById("pause");
   pauseButton.value = "Pause";
-  alert = false;
+  Alert = false;
 }
 
 function start(time) {
