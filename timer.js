@@ -105,5 +105,4 @@ function testSound() {
 
 function swapAlert(){
   alertStatus = alertStatus ? false : true;
-
 }
