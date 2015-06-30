@@ -58,7 +58,7 @@ function alternateTimer(){
     currentMode = 1500;
   } else {
     timesLooped++
-    if (maxLoop && timesLooped >= MaxLoop) {
+    if (maxLoop && timesLooped >= maxLoop) {
       totalSeconds = 900;
       currentMode = 900;
       timesLooped = 0;
@@ -105,4 +105,5 @@ function testSound() {
 
 function swapAlert(){
   alertStatus = alertStatus ? false : true;
+
 }
