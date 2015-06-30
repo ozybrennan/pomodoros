@@ -1,108 +1,108 @@
-var Timer;
-var TotalSeconds;
-var CurrentMode;
-var TimesLooped;
-var MaxLoop;
-var AlarmSound;
-var PauseButton;
-var Handle;
-var Alert;
+var timer;
+var totalSeconds;
+var currentMode;
+var timesLooped;
+var maxLoop;
+var alarmSound;
+var pauseButton;
+var handle;
+var alertStatus;
 
-function CreateTimer(){
-  Timer = document.getElementById("timer");
-  AlarmSound = document.getElementById("audio");
-  PauseButton = document.getElementById("pause");
-  PauseButton.value = "Pause";
-  Alert = false;
+function createTimer(){
+  timer = document.getElementById("timer");
+  alarmSound = document.getElementById("audio");
+  pauseButton = document.getElementById("pause");
+  pauseButton.value = "Pause";
+  alertStatus = false;
 }
 
-function Start(Time) {
-  TotalSeconds = Time;
-  CurrentMode = Time;
-  TimesLooped = 0;
-  ChangeMax();
-  UpdateTimer();
-  if (Handle) {
-    clearInterval(Handle);
+function start(time) {
+  totalSeconds = time;
+  currentMode = time;
+  timesLooped = 0;
+  changeMax();
+  updateTimer();
+  if (handle) {
+    clearInterval(handle);
   }
-  Handle = setInterval("Tick()", 1000)
+  handle = setInterval("tick()", 1000)
 }
 
-function Tick() {
-  if (TotalSeconds <= 0) {
-    AlternateTimer();
+function tick() {
+  if (totalSeconds <= 0) {
+    alternateTimer();
   } else {
-    TotalSeconds -= 1;
-    UpdateTimer();
+    totalSeconds -= 1;
+    updateTimer();
   }
 }
 
-function UpdateTimer() {
-  var Seconds = TotalSeconds;
+function updateTimer() {
+  var seconds = totalSeconds;
 
-  var Minutes = Math.floor(Seconds / 60);
-  Seconds -= Minutes * (60);
+  var minutes = Math.floor(seconds / 60);
+  seconds -= minutes * (60);
 
-  var TimeString = LeadingZero(Minutes) + " : " + LeadingZero(Seconds)
+  var timeString = leadingZero(minutes) + " : " + leadingZero(seconds)
 
-  Timer.innerHTML = TimeString;
+  timer.innerHTML = timeString;
 }
 
-function LeadingZero(Time) {
-  return (Time < 10) ? "0" + Time : Time;
+function leadingZero(time) {
+  return (time < 10) ? "0" + time : time;
 }
 
-function AlternateTimer(){
-  if (CurrentMode === 300 || CurrentMode === 900) {
-    TotalSeconds = 1500;
-    CurrentMode = 1500;
+function alternateTimer(){
+  if (currentMode === 300 || currentMode === 900) {
+    totalSeconds = 1500;
+    currentMode = 1500;
   } else {
-    TimesLooped++
-    if (MaxLoop && TimesLooped >= MaxLoop) {
-      TotalSeconds = 900;
-      CurrentMode = 900;
-      TimesLooped = 0;
+    timesLooped++
+    if (maxLoop && timesLooped >= MaxLoop) {
+      totalSeconds = 900;
+      currentMode = 900;
+      timesLooped = 0;
     } else {
-      TotalSeconds = 300;
-      CurrentMode = 300;
+      totalSeconds = 300;
+      currentMode = 300;
     }
   }
-  AlarmSound.play();
-  if (Alert) {
-    if (CurrentMode === 1500) {
+  alarmSound.play();
+  if (alertStatus) {
+    if (currentMode === 1500) {
       alert("Break's over! Get to work!")
     } else {
       alert("Work's over! Time to play!")
     }
   }
-  clearInterval(Handle);
-  window.setTimeout("StartLoop()", 800)
+  clearInterval(handle);
+  window.setTimeout("startLoop()", 800)
 }
 
-function StartLoop () {
-  UpdateTimer();
-  Handle = window.setInterval("Tick()", 1000)
+function startLoop () {
+  updateTimer();
+  handle = window.setInterval("tick()", 1000)
 }
 
-function Pause () {
-  if (Handle === 0) {
-    PauseButton.value = "Pause";
-    Handle = window.setInterval("Tick()", 1000)
-  } else if (Handle !== undefined) {
-    PauseButton.value = "Unpause";
-    window.clearInterval(Handle);
-    Handle = 0;
+function pause () {
+  if (handle === 0) {
+    pauseButton.value = "Pause";
+    handle = window.setInterval("tick()", 1000)
+  } else if (handle !== undefined) {
+    pauseButton.value = "Unpause";
+    window.clearInterval(handle);
+    handle = 0;
   }
 }
 
-function ChangeMax () {
-  MaxLoop = parseInt(document.getElementById('selectMax').value);
+function changeMax () {
+  maxLoop = parseInt(document.getElementById('selectMax').value);
 }
 
-function TestSound() {
-  AlarmSound.play();
+function testSound() {
+  alarmSound.play();
 }
 
-function SwapAlert(){
-  Alert = Alert ? false : true;
+function swapAlert(){
+  alertStatus = alertStatus ? false : true;
 }
