@@ -6,7 +6,8 @@
   </head>
 
   <body>
-    <h1>Pomodoros</h1>
+    <h1>Pomodoros Timer</h1>
+    <h6>A Time Management Tool</h6>
     <p>
     <div id='timer'>00 : 00</div>
     <p>
@@ -14,28 +15,32 @@
     <input class="btn" id="start" type="button" value="Start" onclick="start()" />
     <input class="btn" id="pause" type="button" value="Pause" onclick="pause()" />
     <p>
-    <label for="workPeriod">Work Length</label>
-    <input type="text" value="25" id="workPeriod" onChange="changeLength(workPeriod)"> <br>
-    <label for="breakPeriod">Short Break Length</label>
-    <input type="text" value="5" id="breakPeriod"> <br>
-    <label for="longBreakPeriod">Long Break Length</label>
-    <input type="text" value="15" id="longBreakPeriod"> <br>
-    Lengths are in minutes. Decimals are okay.
-    <p>
-    <div>
-      <label for="selectMax">Long Break</label>
-      <br>
-      <select id="selectMax" onChange = "changeMax()">
-        <option value="3">Every Third</option>
-        <option value="4">Every Fourth</option>
-        <option value="5">Every Fifth</option>
-        <option value="0">No Long Break</option>
-      </select>
-    </div>
-    <p>
-    <div>
-      <label for="alert">Alert</label> <input type="checkbox" id="alert" onChange="swapAlert()">
-    </div>
+    <section>
+      <p>
+      <label for="workPeriod">Work Length</label>
+      <input type="text" value="25" id="workPeriod" onChange="changeLength(workPeriod)"> <br>
+      <label for="breakPeriod">Short Break Length</label>
+      <input type="text" value="5" id="breakPeriod"> <br>
+      <label for="longBreakPeriod">Long Break Length</label>
+      <input type="text" value="15" id="longBreakPeriod"> <br>
+      Lengths are in minutes. Decimals are okay.
+      <p>
+      <div>
+        <label for="selectMax">Long Break</label>
+        <br>
+        <select id="selectMax" onChange = "changeMax()">
+          <option value="3">Every Third</option>
+          <option value="4">Every Fourth</option>
+          <option value="5">Every Fifth</option>
+          <option value="0">No Long Break</option>
+        </select>
+      </div>
+      <p>
+      <div>
+        <label for="alert">Alert</label> <input type="checkbox" id="alert" onChange="swapAlert()">
+      </div>
+      <p>
+    </section>
     <p>
     <input class="btn" id="test" type="button" value="Test Sound" onclick="testSound()" />
     <script type="application/javascript">
