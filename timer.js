@@ -1,5 +1,8 @@
 var timer;
 var totalSeconds;
+var workLength;
+var shortBreakLength;
+var longBreakLength
 var currentMode;
 var timesLooped;
 var maxLoop;
@@ -16,9 +19,12 @@ function createTimer(){
   alertStatus = false;
 }
 
-function start(time) {
-  totalSeconds = time;
-  currentMode = time;
+function start() {
+  workLength = document.getElementById("workPeriod").value * 60;
+  shortBreakLength = document.getElementById("breakPeriod").value * 60;
+  longBreakLength = document.getElementById("longBreakPeriod").value * 60;
+  totalSeconds = workLength;
+  currentMode = "work";
   timesLooped = 0;
   changeMax();
   updateTimer();
@@ -53,23 +59,22 @@ function leadingZero(time) {
 }
 
 function alternateTimer(){
-  if (currentMode === 300 || currentMode === 900) {
-    totalSeconds = 1500;
-    currentMode = 1500;
+  if (currentMode === "break") {
+    totalSeconds = workLength;
+    currentMode = "work";
   } else {
+    currentMode = "break";
     timesLooped++
     if (maxLoop && timesLooped >= maxLoop) {
-      totalSeconds = 900;
-      currentMode = 900;
+      totalSeconds = longBreakLength;
       timesLooped = 0;
     } else {
-      totalSeconds = 300;
-      currentMode = 300;
+      totalSeconds = shortBreakLength;
     }
   }
   alarmSound.play();
   if (alertStatus) {
-    if (currentMode === 1500) {
+    if (currentMode === "work") {
       alert("Break's over! Get to work!")
     } else {
       alert("Work's over! Time to play!")
@@ -105,4 +110,15 @@ function testSound() {
 
 function swapAlert(){
   alertStatus = alertStatus ? false : true;
+}
+
+function changeLength(id){
+  var value = document.getElementById(id)
+  if (id === "workPeriod") {
+    workLength = value;
+  } else if (id === "breakPeriod") {
+    shortBreakLength = value;
+  } else {
+    longBreakLength = value; 
+  }
 }
